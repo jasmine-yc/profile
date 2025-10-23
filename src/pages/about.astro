@@ -1,18 +1,30 @@
 ---
-const pageTitle = "About Me";
+import "../styles/global.css";
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
+
+const pageTitle = "關於我";
 
 const identity = {
-  firstName: "Sarah",
-  country: "Canada",
-  occupation: "Technical Writer",
-  hobbies: ["photography", "birdwatching", "baseball"],
+  firstName: "",
+  country: "臺灣",
+  occupation: "高中生",
+  hobbies: ["看小說", "聽音樂", "學習語言"],
 };
 
-const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
+const skills = ["C++", "Python", "鋼琴", "HTML", "日語 N5"];
+const todo = ["JavaScript", "Astro", "React"];
+const game = ["Phigros","桃源深處有人家","Rhythm Hive"];
+const movie = [];
+const novel = ["天涯雙探","哈利波特","渣反","判官"];
 
 const happy = true;
 const finished = false;
-const goal = 3;
+const name = 0;
+
+const skillColor = "crimson";
+const fontWeight = "bold";
+const textCase = "uppercase";
 ---
 
 <html lang="en">
@@ -22,54 +34,60 @@ const goal = 3;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
-  </head>
-  <body>
-    <a href="/">Home</a>
-    <a href="/about/">About</a>
-    <a href="/blog/">Blog</a>
-    <h1>{pageTitle}</h1>
-    <h2>... and my new Astro site!</h2>
-
-    <p>
-      I am working through Astro's introductory tutorial. This is the second
-      page on my website, and it's the first one I built myself!
-    </p>
-
-    <p>
-      This site will update as I complete more of the tutorial, so keep checking
-      back and see how my journey is going!
-    </p>
-
-    <p>Here are a few facts about me:</p>
-    <ul>
-      <li>My name is {identity.firstName}.</li>
-      <li>
-        I live in {identity.country} and I work as a {identity.occupation}.
-      </li>
-      {
-        identity.hobbies.length >= 2 && (
-          <li>
-            Two of my hobbies are: {identity.hobbies[0]} and{" "}
-            {identity.hobbies[1]}
-          </li>
-        )
+    <style define:vars={{ skillColor, fontWeight, textCase }}>
+      h1 {
+        font-size: 4rem;
       }
-    </ul>
-    <p>My skills are:</p>
-    <ul>
-      {skills.map((skill) => <li>{skill}</li>)}
-    </ul>
+      .skill {
+        color: var(--skillColor);
+        font-weight: var(--fontWeight);
+        text-transform: var(--textCase);
+      }
+    </style>
+  </head>
+  <img />
+  <Navigation />
+  <h1>{pageTitle}</h1>
+  <h2>一個正常人</h2>
 
-    {happy && <p>I am happy to be learning Astro!</p>}
+  <p>Leetcode 題數 [24]</p>
+  <p>114/10/23</p>
+  <img class="fit-picture" src="/src/images/leetcode/1141023.png" />
 
-    {finished && <p>I finished this tutorial!</p>}
-
+  <p>自界</p>
+  <ul>
+    <li>{identity.occupation}</li>
+    <li>MBTI：INTJ</li>
+    <li>雖然說是T人，但個人覺得自己很有同情心</li>
     {
-      goal === 3 ? (
-        <p>My goal is to finish in 3 days.</p>
-      ) : (
-        <p>My goal is not 3 days.</p>
+      identity.hobbies.length >= 3 && (
+        <li>
+          興趣： {identity.hobbies[0]}、{identity.hobbies[1]}、
+          {identity.hobbies[2]}
+        </li>
       )
     }
-  </body>
+    <li>淡坑生米：大概是 2022 年的</li>
+    <li>正在學 C++，但還是很弱的程度。</li>
+  </ul>
+  <p>遊戲</p>
+  <ul>
+    {game.map((skill) => <li class="skill">{skill}</li>)}
+  </ul>
+  <p>技能</p>
+  <ul>
+    {skills.map((skill) => <li class="skill">{skill}</li>)}
+  </ul>
+  <p>待辦</p>
+  <ul>
+    {todo.map((skill) => <li class="skill">{skill}</li>)}
+  </ul>
+
+  {happy && <p>祝你有美好的一天</p>}
+
+  {finished && <p>I finished this tutorial!</p>}
+
+  {name === 1 ? <p>我取出暱稱了</p> : <p>我還沒取出暱稱，誠徵暱稱</p>}
+  <Footer />
+
 </html>
